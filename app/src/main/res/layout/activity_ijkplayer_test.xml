@@ -9,10 +9,20 @@
         android:layout_height="match_parent" />
 
     <Button
+        android:id="@+id/button_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="30dp"
         android:onClick="startPlay"
         android:text="startPlay" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/button_start"
+        android:layout_alignTop="@+id/button_start"
+        android:text="new Activity"
+        android:layout_toRightOf="@+id/button_start"
+        android:onClick="startActivity"/>
 </RelativeLayout>

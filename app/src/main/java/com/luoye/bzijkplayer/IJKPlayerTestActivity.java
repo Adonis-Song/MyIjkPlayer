@@ -1,5 +1,6 @@
 package com.luoye.bzijkplayer;
 
+import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -59,13 +60,8 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
         }
         try {
             ijkMediaPlayer.setSurface(surface);
-            ijkMediaPlayer.setDataSource("/sdcard/bzmedia/testvideo.mp4");
-            ijkMediaPlayer.setOnPreparedListener(new IMediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(IMediaPlayer iMediaPlayer) {
-                    iMediaPlayer.start();
-                }
-            });
+            ijkMediaPlayer.setDataSource("/sdcard/DCIM/Camera/song.mp4");
+            ijkMediaPlayer.setOnPreparedListener(IMediaPlayer::start);
             ijkMediaPlayer.prepareAsync();
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,5 +84,9 @@ public class IJKPlayerTestActivity extends AppCompatActivity {
             ijkMediaPlayer.stop();
             ijkMediaPlayer.release();
         }
+    }
+
+    public void startActivity(View view) {
+        startActivity(new Intent(this, IJKPlayerTestActivity.class));
     }
 }
