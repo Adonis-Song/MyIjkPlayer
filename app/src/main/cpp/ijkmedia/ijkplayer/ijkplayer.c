@@ -406,6 +406,7 @@ static int ijkmp_prepare_async_l(IjkMediaPlayer *mp)
 
     // released in msg_loop
     ijkmp_inc_ref(mp);
+    //启动msg loop 其中的msg是从ffplay的msgqueue中获取
     mp->msg_thread = SDL_CreateThreadEx(&mp->_msg_thread, ijkmp_msg_loop, mp, "ff_msg_loop");
     // msg_thread is detached inside msg_loop
     // TODO: 9 release weak_thiz if pthread_create() failed;
@@ -691,7 +692,7 @@ int ijkmp_get_msg(IjkMediaPlayer *mp, AVMessage *msg, int block)
     assert(mp);
     while (1) {
         int continue_wait_next_msg = 0;
-        int retval = msg_queue_get(&mp->ffplayer->msg_queue, msg, block);
+        int retval = msg_queue_get(&mp->ffplayer->msg_queue, msg, block);//从ffplay的msg queue中获取数据
         if (retval <= 0)
             return retval;
 

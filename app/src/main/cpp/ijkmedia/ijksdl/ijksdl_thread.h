@@ -36,10 +36,10 @@ typedef enum {
 
 typedef struct SDL_Thread
 {
-    pthread_t id;
-    int (*func)(void *);
-    void *data;
-    char name[32];
+    pthread_t id;//线程id
+    int (*func)(void *);//ijkmp_msg_loop
+    void *data;//IjkMediaPlayer
+    char name[32];//线程名称
     int retval;
 } SDL_Thread;
 

@@ -4246,6 +4246,7 @@ static void ffp_show_version_int(FFPlayer *ffp, const char *module, unsigned ver
            (unsigned int)IJKVERSION_GET_MICRO(version));
 }
 
+//万恶之源 ffplay开始
 int ffp_prepare_async_l(FFPlayer *ffp, const char *file_name)
 {
     assert(ffp);

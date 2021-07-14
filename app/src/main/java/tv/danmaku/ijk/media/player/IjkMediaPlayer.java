@@ -142,7 +142,7 @@ public final class IjkMediaPlayer extends AbstractMediaPlayer {
     public static final int FFP_PROP_INT64_IMMEDIATE_RECONNECT              = 20211;
     //----------------------------------------
 
-    @AccessedByNative
+    @AccessedByNative//native记录此时的MediaPlayer对象的地址  可以通过这个地址直接获得native中的IjkMediaPlayer对象
     private long mNativeMediaPlayer;
     @AccessedByNative
     private long mNativeMediaDataSource;
@@ -936,6 +936,9 @@ public final class IjkMediaPlayer extends AbstractMediaPlayer {
         // do nothing
     }
 
+    /**
+     * 就打印一个log，没有其他的什么作用
+     */
     private static native void native_init();
 
     private native void native_setup(Object IjkMediaPlayer_this);

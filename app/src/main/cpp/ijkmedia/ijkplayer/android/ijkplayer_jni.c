@@ -60,6 +60,12 @@ static player_fields_t g_clazz;
 static int inject_callback(void *opaque, int type, void *data, size_t data_size);
 static bool mediacodec_select_callback(void *opaque, ijkmp_mediacodecinfo_context *mcc);
 
+/**
+ * 实际就是获取thiz Java对象中的mNativeMediaPlayer的值 然后强转成为 IjkMediaPlayer
+ * @param env
+ * @param thiz
+ * @return
+ */
 static IjkMediaPlayer *jni_get_media_player(JNIEnv* env, jobject thiz)
 {
     pthread_mutex_lock(&g_clazz.mutex);
@@ -754,7 +760,7 @@ IjkMediaPlayer_native_setup(JNIEnv *env, jobject thiz, jobject weak_this)
     JNI_CHECK_GOTO(mp, env, "java/lang/OutOfMemoryError", "mpjni: native_setup: ijkmp_create() failed", LABEL_RETURN);
 
     jni_set_media_player(env, thiz, mp);
-    ijkmp_set_weak_thiz(mp, (*env)->NewGlobalRef(env, weak_this));
+    ijkmp_set_weak_thiz(mp, (*env)->NewGlobalRef(env, weak_this));//创建新的全局引用
     ijkmp_set_inject_opaque(mp, ijkmp_get_weak_thiz(mp));
     ijkmp_set_ijkio_inject_opaque(mp, ijkmp_get_weak_thiz(mp));
     ijkmp_android_set_mediacodec_select_callback(mp, mediacodec_select_callback, ijkmp_get_weak_thiz(mp));
