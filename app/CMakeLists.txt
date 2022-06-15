@@ -152,9 +152,7 @@ set(common_sources
         src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijktree.c
         src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkfifo.c
         src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkstl.cpp
-
         src/main/cpp/prof.c
-        src/main/cpp/native-lib.cpp
         )
 
 set(armeabi_v7a_sources
